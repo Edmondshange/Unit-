@@ -35,6 +35,7 @@ class TestUnits(unittest.TestCase):
 
         # 2 glorps = 6 gleeps
         self.assertEqual(convert(ratios, "glorp", "gleep", 2), 6)
+        print()
 
 if __name__ == '__main__':
     unittest.main()
