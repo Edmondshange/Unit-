@@ -1,10 +1,10 @@
 def convert(ratios, from_unit, to_unit, value):
 
-    # STEP 1: Handle the easy case
+    # STEP 1: Handle the easy case first
     if from_unit == to_unit:
         return value
 
-    # STEP 2: Build my "connections map"
+    # STEP 2: Build my connections map to be able to navigate units
     connections = {}
     for (unit_a, unit_b), ratio in ratios.items():
         if unit_a not in connections:
@@ -31,5 +31,5 @@ def convert(ratios, from_unit, to_unit, value):
                 new_value = current_value * multiplier
                 to_visit.append((next_unit, new_value))
 
-    # No path found
+    # No path was found here
     return None
