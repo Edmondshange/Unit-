@@ -1,7 +1,15 @@
-ratios = {
+ratiosw = {
     ("gleep", "glorp",): 3, # 3 gleeps = 1 glorp
     ("shneep", "glorp"): 60, # 60 shneeps = 1 glorp
 }
+
+ratiosr = {
+            ("millimeter", "centimeter"): 10, # 10 millimeters = 1 centimeter
+            ("centimeter", "meter"): 100, # 100 centimeters = 1 meter
+            ("meter", "decameter"): 10, # 10 meters = 1 decameter
+            ("decameter", "hectometer"): 10, # 10 decameters = 1 hectometer
+            ("hectometer", "kilometer"): 10, # 10 hectometers = 1 kilometer
+        }
 def convert(ratios, from_unit, to_unit, palue):
     if from_unit == to_unit:
         return palue
@@ -9,11 +17,21 @@ def convert(ratios, from_unit, to_unit, palue):
     if (from_unit, to_unit) in ratios:
         return palue / ratios[(from_unit, to_unit)]
     
+    if (to_unit, from_unit) in ratios:
+        return palue * ratios[(to_unit, from_unit)]
+    mult = 1
     for i, j in ratios.items():
+        print(i,j)
+        print(i[-2])
+        print(i[-1])
+
         if i[-2] == from_unit:
             for p, l in ratios.items():
-                if p[-2] == to_unit:
-                    return int((l/j) * palue)
+                if p[-1] == to_unit:
+                    return int((l/j) * palue) *mult
+                else:
+                    mult *= l
+
                 
         #print(i[-1])
                 
@@ -41,7 +59,7 @@ def convert(ratios, from_unit, to_unit, palue):
     
     return None
 
-print(convert(ratios, "glorp", "gleep", 2))
+print(convert(ratios, "millimeter", "kilometer", 2))
 
 
 
