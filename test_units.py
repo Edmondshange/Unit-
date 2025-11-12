@@ -35,6 +35,17 @@ class TestUnits(unittest.TestCase):
 
         # 2 glorps = 6 gleeps
         self.assertEqual(convert(ratios, "glorp", "gleep", 2), 6)
+        print()
+
+    def test_many_steps(self):
+        ratios = {
+            ("millimeter", "centimeter"): 10, # 10 millimeters = 1 centimeter
+            ("centimeter", "meter"): 100, # 100 centimeters = 1 meter
+            ("meter", "decameter"): 10, # 10 meters = 1 decameter
+            ("decameter", "hectometer"): 10, # 10 decameters = 1 hectometer
+            ("hectometer", "kilometer"): 10, # 10 hectometers = 1 kilometer
+        }
+        pass
 
 if __name__ == '__main__':
     unittest.main()
